@@ -7,7 +7,7 @@
                 <h3>My written works</h3>
 				<p class="text-muted">Choose a category</p>
 				<ul class="list-group">
-					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='all') }}">All</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases') }}">All</a></li>
 					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='articles') }}">Articles</a></li>
 					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='e-book') }}">E-book</a></li>
 					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='series') }}">Series</a></li>
@@ -16,6 +16,17 @@
         </div>
         <div class="col-md-8">
             <div class="content-section">
+                
+                <div class="p-4 content-section">
+                    <div id="retainable-rss-embed" data-rss="https://medium.com/feed/retainable,https://kalunkeiruka.medium.com/feed/"
+                    data-maxcols="2" 
+                    data-layout="slider" 
+                    data-poststyle="modal" 
+                    data-readmore="Read the rest" 
+                    data-buttonclass="btn btn-outline-dark" 
+                    data-offset="-50">
+                </div>
+                </div>
 				{% if posts %}
             {% for post in posts %}
             <table class="table table-striped table-hover">
@@ -36,10 +47,12 @@
             </table>
 			{% endfor %}
             {% else %}
-            <object data="{{ url_for('static', filename='images/yoga.svg') }}" width="300" height="300"> </object>
+            <div class="p-4 content-section">
+                <object data="{{ url_for('static', filename='images/yoga.svg') }}" width="300" height="300"> </object>
+            </div>
             {% endif %}
             </div>
         </div>
     </div>
 </main>
-{% endblock %}
+{% endblock %}  

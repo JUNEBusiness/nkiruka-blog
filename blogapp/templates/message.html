@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="content-section">
+                <h3>My written works</h3>
+				<p class="text-muted">Choose a category</p>
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases') }}">All</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='articles') }}">Articles</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='e-book') }}">E-book</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='series') }}">Series</a></li>
+				</ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+				<form class="mt-5 p-4" style="border:1px solid #f8f3f3;" action="https://tinyletter.com/Tchelber" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/Tchelber', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"><label class='form-control-label mb-2' for="tlemail"><h4>Enter your email address</h4></label><p><input class="form-control" type="text" name="email" id="tlemail" aria-label="email" /></p><input type="hidden" value="1" name="embed"/><input class="btn btn-outline-dark btn-lg mb-2" type="submit" value="Subscribe" /><p><a href="https://tinyletter.com" target="_blank"><small class="text-muted mt-4"> powered by TinyLetter</small></a></p></form>
+          
+        </div>
+    </div>
+</main>
+{% endblock %}  

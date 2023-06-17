@@ -1,7 +1,12 @@
-from .extensions import db
 from datetime import datetime
+from .extensions import db
+from .extensions import login_manager
 from flask_login import UserMixin
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -9,7 +14,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.Text, nullable=False, default="default.jpg")
     password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship('BlogPosts', backref = "Author", lazy=True)
+    posts = db.relationship('BlogPost', backref = "Author", lazy=True)
 
     def insert(self):
         db.session.add(self)
@@ -53,8 +58,7 @@ class Releases(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(120), nullable=False)
     title = db.Column(db.String(120), unique=True, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default= datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default= datetime.utcnow)
 
     def insert(self):
         db.session.add(self)
