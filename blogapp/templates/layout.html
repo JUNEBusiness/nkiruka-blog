@@ -15,6 +15,12 @@
     <!-- Bootstrap css styles and Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- owl carousel CSS and theme-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     {% if title %}
     <title>Tchelber Writes - {{ title }}</title>
     {% else %}
@@ -56,10 +62,16 @@
                       >
                     </li>
                   </ul>
-                  {% if current_user.is_authenticated %}
+                  {% if current_user.is_authenticated %} 
+                  <div class="nav-item active text-end ms-auto word">
+                    <a class="nav-item nav-link px-2 text-secondary" href="{{ url_for('auth.new_post') }}">New Post</a>
+                    </div>
+                    <div class="nav-item active text-end ms-4 word">
+                      <a class="nav-item nav-link px-2 text-secondary" href="{{ url_for('auth.profile') }}">Account</a>
+                      </div>
                   <div class="nav-item active text-end ms-auto">
-                    <a class="nav-link" href="{{ url_for('auth.login') }}"
-                      ><button type="button" class="btn btn-outline-dark">Login</button></a
+                    <a class="nav-link  pe-0" href="{{ url_for('auth.logout') }}"
+                      ><button type="button" class="btn btn-outline-warning">Logout</button></a
                     >
                   </div>
                   {% endif %}
@@ -85,18 +97,31 @@
         {% endblock %}  
     </div>
     <footer>
+      <div class="container text-center my-auto">
+        <a href="https://www.instagram.com/kalunwau/" target="_blank"><i class="ti ti-brand-instagram"></i></a>
+        <a href="https://twitter.com/Nwualari" target="_blank"><i class="ti ti-brand-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/kalu-nkeiruka/" target="_blank"><i class="ti ti-brand-linkedin"></i></a>
+        <a href="https://kalunkeiruka.medium.com/" target="_blank"><i class="ti ti-brand-medium"></i></a></div>
       <small class="text-muted">
-      copyright &#169 2023 JUNE Business.
+        Copyright &#169 2023 Tchelber Writes.
     </small>
   </footer>
 
 
-<!-- Custom Script -->
-<script src="{{ url_for('static', filename='index.js') }}" referrerpolicy="origin"></script>
+
 
 <!-- Jquery, Js and Popper scripts for Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <!-- For Embedding medium post -->
 <script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>
+
+<!-- owe carousel jquery and js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Custom Script -->
+<script src="{{ url_for('static', filename='index.js') }}" referrerpolicy="origin"></script>
+
 </body>
 </html>

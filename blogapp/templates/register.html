@@ -83,7 +83,7 @@
                     <div class="form-group mb-2">
                         {{ form.username.label(class="form-control-label") }}
                         {% if form.username.errors %}
-                            {{ form.username(class="form-control is-invalid", placeholder="{{ form.username.data}}") }}
+                            {{ form.username(class="form-control is-invalid") }}
                             <div class="invalid-feedback">
                                     {% for error in form.username.errors %}
                                         <span>{{ error }}</span>
@@ -96,7 +96,7 @@
                     <div class="form-group mb-2">
                         {{ form.email.label(class="form-control-label") }}
                         {% if form.email.errors %}
-                            {{ form.email(class="form-control is-invalid", placeholder="{{ form.email.data}}") }}
+                            {{ form.email(class="form-control is-invalid") }}
                             <div class="invalid-feedback">
                                     {% for error in form.email.errors %}
                                         <span>{{ error }}</span>
@@ -143,11 +143,18 @@
             </small>
         </div>
     </div>
+    
     <footer>
+        <div class="container text-center my-auto">
+          <a href="https://www.instagram.com/kalunwau/" target="_blank"><i class="ti ti-brand-instagram"></i></a>
+          <a href="https://twitter.com/Nwualari" target="_blank"><i class="ti ti-brand-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/kalu-nkeiruka/" target="_blank"><i class="ti ti-brand-linkedin"></i></a>
+          <a href="https://kalunkeiruka.medium.com/" target="_blank"><i class="ti ti-brand-medium"></i></a></div>
         <small class="text-muted">
-        copyright &#169 2023 JUNE Business.
+          Copyright &#169 2023 Tchelber Writes.
       </small>
-    </footer>  
+    </footer>
+  
 <!-- Custom Script -->
 <script src="{{ url_for('static', filename='index.js') }}" referrerpolicy="origin"></script>
 

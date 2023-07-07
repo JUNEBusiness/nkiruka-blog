@@ -3,6 +3,7 @@ from os import path
 
 from .extensions import db
 from .extensions import login_manager
+from .extensions import mail
 
 DB_NAME = "blog.db"
 
@@ -15,6 +16,7 @@ def create_app():
 
     db.init_app(app=app)
     login_manager.init_app(app)
+    mail.init_app(app)
 
     from .views import views
     from .auth import auth

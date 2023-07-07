@@ -12,7 +12,8 @@ def home():
 
 @views.route("/blog")
 def blog():
-	return render_template("blog.html", title="Blog")
+	posts =  BlogPost.query.all()
+	return render_template("blog.html", title="Blog", posts=posts)
 
 @views.route("/about")
 def about():
@@ -23,12 +24,21 @@ def message():
 	return render_template("message.html", title="Message")
 
 
+@views.route("/post/<int:post_id>")
+def post(post_id):
+    post =  BlogPost.query.get_or_404(post_id)
+    return render_template('post.html', title=post.title, post=post)
+
+
+
 @views.route("/releases")
 def releases():
-	post_category = request.args.get("category", 1)
-	if post_category=="all" or post_category==1:
+	post_category = request.args.get("category").strip().capitalize()
+	if post_category=="All" or post_category==1:
 		posts = Releases.query.all()
 		return render_template("releases.html", title="Releases", posts=posts)
 	else:
-		posts = Releases.query.filter_by(type=post_category)
+		posts = Releases.query.filter_by(type=post_category).all()
 		return render_template("releases.html", title="Releases", posts=posts)
+
+

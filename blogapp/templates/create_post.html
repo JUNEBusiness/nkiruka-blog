@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="content-section">
+                <h3>My written works</h3>
+				<p class="text-muted">Choose a category</p>
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='all') }}">All</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='articles') }}">Articles</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='e-book') }}">E-book</a></li>
+					<li class="list-group-item list-group-item-light"><a href="{{ url_for('views.releases', category='series') }}">Series</a></li>
+				</ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="content-section">
+              {% if current_user.is_authenticated and current_user.is_admin %}
+                <div class="container">
+                  <form action="{{ url_for('auth.new_post')}}" method="POST">
+                    {{ release.csrf_token }}
+                    <fieldset class="form-group">
+                      <legend class="border-bottom text-center"><h6>share releases</h6></legend>
+                      <div class="form-group mb-2">
+                        {{ release.title.label(class="form-control-label") }} 
+                        {% if release.title.errors %} 
+                        {{ release.title(class="form-control")}}
+                        <div class="invalid-feedback">
+                          {% for error in release.title.errors %}
+                          <span>{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %} {{ release.title(class="form-control") }} {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                        {{ release.type.label(class="form-control-label") }} {% if
+                        release.type.errors %} {{ release.type(class="form-control") }}
+                        <div class="invalid-feedback">
+                          {% for error in release.type.errors %}
+                          <span>{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %} {{ release.type(class="form-control") }} {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                        {{ release.date.label(class="form-control-label") }} {% if
+                        release.date.errors %} {{ release.date() }}
+                        <div class="invalid-feedback">
+                          {% for error in release.date.errors %}
+                          <span>{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %} {{ release.date() }} {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                        {{ release.submit(class="btn btn-outline-dark") }}
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+              <hr/>
+              {% endif %}
+              <!-- blog post -->
+                <div class="container">
+                  <form action="{{ url_for('auth.new_post')}}" method="POST">
+                    {{ blog.csrf_token }}
+                    <fieldset class="form-group">
+                      <legend class="border-bottom mb-2 text-center"><h6>share posts</h6></legend>
+                      <div class="form-group mb-2">
+                        {{ blog.title.label(class="form-control-label") }} 
+                        {% if blog.title.errors %} 
+                        {{ blog.title(class="form-control")}}
+                        <div class="invalid-feedback">
+                          {% for error in blog.title.errors %}
+                          <span>{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %} {{ blog.title(class="form-control") }} {% endif %}
+                      </div>
+                      <div class="form mb-2">
+                        {{ blog.content.label(class="form-control-label") }} {% if
+                        blog.content.errors %} {{ blog.content(class="form-control") }}
+                        <div class="invalid-feedback">
+                          {% for error in blog.content.errors %}
+                          <span>{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                        {% else %} {{ blog.content(class="form-control") }} {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                        {{ blog.submit(class="btn btn-outline-dark") }}
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+        </div>
+    </div>
+</main>
+{% endblock %}  

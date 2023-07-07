@@ -3,7 +3,10 @@ h4 {
     display: inline;
 }
 
+
 body{
+    /* background-color: teal;
+    background-image: linear-gradient(to right, teal, purple); */
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
     display: flex;
@@ -13,7 +16,7 @@ body{
 footer {
     color: black;
     text-align: center;
-    background: #bf66fe;
+    background: #EDDCFA;
     margin-top: auto;
     padding: 20px;
 }
@@ -79,6 +82,16 @@ p, h4, h5, h6, h3 {
     font-weight: 500;
 }
    */
+
+.card {
+    width: 190px;
+    height: 254px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+               -15px -15px 30px #ffffff;
+  }
+   
 .content-section {
     background: #ffffff;
     padding: 10px 20px;
@@ -141,6 +154,48 @@ a.article-title:hover {
 }
   */
 
+/* upload image css */
+  
+  .file-title {
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .file-paragraph {
+    margin-top: 10px;
+    font-size: 0.9375rem;
+    color: rgb(105, 105, 105);
+  }
+  
+
+  .file-input {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 2px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(8, 8, 8, 0.288);
+  }
+  
+  .file-input::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  .file-input::file-selector-button:hover {
+    background: #0d45a5;
+  }
+  
+/* end upload image css */
+
 .intro {
     text-align: center;
     line-height: 2rem;
@@ -161,6 +216,22 @@ a.article-title:hover {
 	/* or 150% */
 
 	letter-spacing: 0.25px;
+}
+
+.releases {
+    height: 200px;
+}
+
+.release-post {
+    display: inline;
+}
+
+#contact{
+    background: white;
+}
+
+#row_2 {
+    margin:0px auto;
 }
 
 #row_4 {

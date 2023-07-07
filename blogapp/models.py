@@ -14,7 +14,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.Text, nullable=False, default="default.jpg")
     password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship('BlogPost', backref = "Author", lazy=True)
+    is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    posts = db.relationship('BlogPost', backref = "author", lazy=True)
 
     def insert(self):
         db.session.add(self)
@@ -28,7 +29,7 @@ class User(db.Model, UserMixin):
         db.session.commit()
 
     def __repr__(self):
-        return "<User %r>" % self.id
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
     
 
 class BlogPost(db.Model):
@@ -51,7 +52,7 @@ class BlogPost(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return "<BlogPost %r>" % self.id
+        return f"BlogPost('{self.title}', '{self.date_posted}')"
     
 
 class Releases(db.Model):
@@ -73,5 +74,5 @@ class Releases(db.Model):
 
 
     def __repr__(self):
-        return "<Releases %r>" % self.id
+        return f"Releases('{self.title}', '{self.type}')"
     
