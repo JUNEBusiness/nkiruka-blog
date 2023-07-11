@@ -14,6 +14,15 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
 
+    # mail config
+    app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USERNAME'] = "justiceomonigho@gmail.com"
+    app.config['MAIL_PASSWORD'] = "rxhykrqttqjrzqsj"
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
+
+    # initializing app features
     db.init_app(app=app)
     login_manager.init_app(app)
     mail.init_app(app)
@@ -21,6 +30,7 @@ def create_app():
     from .views import views
     from .auth import auth
 
+    # registering blueprints
     app.register_blueprint(auth)
     app.register_blueprint(views)
     

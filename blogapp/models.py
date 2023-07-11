@@ -1,7 +1,12 @@
 from datetime import datetime
 from .extensions import db
 from .extensions import login_manager
+# from blogapp import create_app
+
+from flask import current_app
 from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
+from itsdangerous.url_safe import URLSafeTimedSerializer as Serializer
 
 
 @login_manager.user_loader
@@ -16,6 +21,19 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     posts = db.relationship('BlogPost', backref = "author", lazy=True)
+
+    def get_reset_token(self):
+        s = Serializer(current_app.config["SECRET_KEY"], salt="Reset_password")
+        return s.dumps({"user_id": self.id})
+
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(current_app.config["SECRET_KEY"], salt="Reset_password")
+        try: 
+            user_id = s.loads(token)["user_id"]
+        except:
+            return None
+        return User.query.get(user_id)
 
     def insert(self):
         db.session.add(self)

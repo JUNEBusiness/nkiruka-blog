@@ -33,6 +33,7 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired(), Length(min=7, max=100,  message="Your password should be more than 7 characters and less than 100")])
     remember = BooleanField("Remember Me")
     submit = SubmitField("Login")
+
     def validate_email(self, email):
         user = User.query.filter_by(email=self.email.data).first()
         if not user:
@@ -73,3 +74,16 @@ class BlogPostForm(FlaskForm):
     submit = SubmitField("Post")
 
 
+class RequestResetForm(FlaskForm):
+    email =  EmailField("Email", validators=[DataRequired(), Email(message="Please input a valid email")])
+    submit = SubmitField("Request password reset")
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=self.email.data).first()
+        if not user:
+            raise ValidationError({"Response": f" A reset email has been sent to {self.email.data}"})
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField("Password", validators=[DataRequired(), Length(min=7, max=100, message="Your password should be more than 7 characters and less than 100")])
+    confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password", "Passwords does not match!")])
+    submit = SubmitField("Reset password")
