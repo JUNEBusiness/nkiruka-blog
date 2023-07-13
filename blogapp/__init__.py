@@ -29,10 +29,12 @@ def create_app():
 
     from .views import views
     from .auth import auth
+    from .handlers import errors
 
     # registering blueprints
     app.register_blueprint(auth)
     app.register_blueprint(views)
+    app.register_blueprint(errors)
     
     from .models import User, BlogPost, Releases
     

@@ -6,7 +6,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateF
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from .models import User
 
-from werkzeug.security import check_password_hash
+
 
 class RegistrationForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20, message="Your username should be more than 2 characters and less than 20")])
